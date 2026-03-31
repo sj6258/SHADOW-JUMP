@@ -14,6 +14,10 @@ config/name="SHADOW JUMP"
 run/main_scene="uid://bjgwvyq6kd3t5"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 
+[autoload]
+
+Music="*res://scenes/music.tscn"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")

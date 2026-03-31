@@ -7,9 +7,26 @@ var face = Vector2.RIGHT.rotated(rotation)
 const SPEED = 130.0
 const JUMP_VELOCITY = -300.0
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
 
 func _physics_process(delta: float) -> void:
 	var input_dir = Input.get_vector("left","right","up","down")
+	var direction = Input.get_axis("left","right")
+	
+	if direction > 0:
+		animated_sprite_2d.flip_h = false
+	if direction < 0:
+		animated_sprite_2d.flip_h = true
+	
+	if is_on_floor():
+		if direction == 0:
+			animated_sprite_2d.play("idle")
+		else:
+			animated_sprite_2d.play("run")
+	else:
+		animated_sprite_2d.play("jump")
+
 	
 	if input_dir != Vector2.ZERO:
 		face = input_dir.normalized()
@@ -25,7 +42,6 @@ func _physics_process(delta: float) -> void:
 		global_position += face * tp_distance
 		
 
-	var direction := Input.get_axis("left" , "right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:

@@ -7,4 +7,4 @@ var score = 0
 
 func add_score():
 	score += 1
-	score_label.text = "Total Coins : " + str(score) + " / 25"
+	score_label.text = "Total Coins : " + str(score) + " / 45"

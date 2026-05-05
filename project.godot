@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SHADOW JUMP"
-run/main_scene="uid://b7wwcj6f7ccb6"
+run/main_scene="uid://bua8ytv6l6pkh"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 
 [autoload]

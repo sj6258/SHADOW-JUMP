@@ -56,9 +56,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -113.0
-offset_top = 66.0
+offset_top = 58.0
 offset_right = 159.0
-offset_bottom = 154.5
+offset_bottom = 146.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_l6cm7")
@@ -67,7 +67,28 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ekxnf")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_bqqt6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bqqt6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
-text = "START"
+text = "LEVEL 1"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -107.0
+offset_top = 203.0
+offset_right = 165.0
+offset_bottom = 291.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_ekxnf")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
+text = "LEVEL 2"
 
 [node name="Label" type="Label" parent="."]
 texture_filter = 1
@@ -85,3 +106,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

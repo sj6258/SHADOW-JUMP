@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+
+
+
 var player : Sprite2D
 var tp_distance : float = 50
 var face = Vector2.RIGHT.rotated(rotation)

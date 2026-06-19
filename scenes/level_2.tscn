@@ -328,8 +328,23 @@ text = "TOTAL COINS : X/20
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="ScoreLabel3" type="Label" parent="GameManager"]
+texture_filter = 1
+texture_repeat = 3
+offset_left = 5518.0
+offset_top = -725.0
+offset_right = 5580.0
+offset_bottom = -673.0
+theme_override_colors/font_color = Color(0.00011382803, 0.00011382803, 0.00011382803, 1)
+theme_override_fonts/font = ExtResource("2_wo48x")
+theme_override_font_sizes/font_size = 8
+text = "TOTAL COINS : X/20
+
+"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="ScoreLabel" type="Label" parent="GameManager"]
-visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 

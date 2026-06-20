@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bjgwvyq6kd3t5"]
+[gd_scene load_steps=20 format=3 uid="uid://bjgwvyq6kd3t5"]
 
 [ext_resource type="Script" uid="uid://dqxk32og66sik" path="res://scenes/game_manager.gd" id="1_gee14"]
 [ext_resource type="PackedScene" uid="uid://c5ga23ysty7uo" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cfbd0y7w2ghy5" path="res://scenes/slime.tscn" id="6_p57ef"]
 [ext_resource type="FontFile" uid="uid://dhyt1v1ak52ee" path="res://brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="7_u5sy4"]
 [ext_resource type="FontFile" uid="uid://cxfbkwfodohgk" path="res://brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://cvrrncske3dmc" path="res://scenes/portal.tscn" id="10_vtaks"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnu2h"]
 texture = ExtResource("2_yqjtg")
@@ -249,23 +250,6 @@ _data = {
 &"RESET": SubResource("Animation_vtaks"),
 &"slide": SubResource("Animation_0tnpc")
 }
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tnpc"]
-bg_color = Color(1.02277845e-07, 0.2680229, 0.13709232, 1)
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtaks"]
-bg_color = Color(0, 0.105882354, 0.015686275, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
 
 [node name="Game" type="Node2D"]
 
@@ -617,6 +601,20 @@ text = "Congratulations you have reached the end !!!"
 horizontal_alignment = 1
 autowrap_mode = 2
 
+[node name="Label16" type="Label" parent="Labels"]
+texture_filter = 1
+texture_repeat = 3
+offset_left = 3483.0
+offset_top = -285.0
+offset_right = 3559.0
+offset_bottom = -255.0
+theme_override_colors/font_color = Color(0.00011382803, 0.00011382803, 0.00011382803, 1)
+theme_override_fonts/font = ExtResource("7_u5sy4")
+theme_override_font_sizes/font_size = 8
+text = "MAIN MENU"
+horizontal_alignment = 1
+autowrap_mode = 2
+
 [node name="Label8" type="Label" parent="Labels"]
 texture_filter = 1
 texture_repeat = 3
@@ -709,25 +707,5 @@ libraries = {
 }
 autoplay = "slide"
 
-[node name="MainMenu1" type="Button" parent="."]
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 3476.0
-offset_top = -261.0
-offset_right = 3549.0
-offset_bottom = -240.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("9_0tnpc")
-theme_override_font_sizes/font_size = 8
-theme_override_styles/normal = SubResource("StyleBoxFlat_0tnpc")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_vtaks")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_vtaks")
-theme_override_styles/hover = SubResource("StyleBoxFlat_vtaks")
-text = "Main Menu"
-
-[connection signal="pressed" from="MainMenu1" to="GameManager" method="_on_main_menu_1_pressed"]
+[node name="Portal" parent="." instance=ExtResource("10_vtaks")]
+position = Vector2(3520, -313)

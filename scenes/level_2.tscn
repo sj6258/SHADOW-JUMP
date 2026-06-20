@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bua8ytv6l6pkh"]
+[gd_scene load_steps=22 format=3 uid="uid://bua8ytv6l6pkh"]
 
 [ext_resource type="Script" uid="uid://dqxk32og66sik" path="res://scenes/game_manager.gd" id="1_b4j7a"]
 [ext_resource type="FontFile" uid="uid://cxfbkwfodohgk" path="res://brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="2_wo48x"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://beatmvuwqrsw" path="res://scenes/platform.tscn" id="6_wo48x"]
 [ext_resource type="PackedScene" uid="uid://cfbd0y7w2ghy5" path="res://scenes/slime.tscn" id="7_ne2mo"]
 [ext_resource type="PackedScene" uid="uid://dx5eob3jgtnw3" path="res://scenes/collectibles.tscn" id="8_6cvei"]
+[ext_resource type="PackedScene" uid="uid://cvrrncske3dmc" path="res://scenes/portal.tscn" id="9_6cvei"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_que50"]
 texture = ExtResource("3_y0kc7")
@@ -289,23 +290,6 @@ _data = {
 &"slide": SubResource("Animation_que50")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ne2mo"]
-bg_color = Color(1.02277845e-07, 0.2680229, 0.13709232, 1)
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cvei"]
-bg_color = Color(0, 0.105882354, 0.015686275, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
 [node name="Level 2" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="."]
@@ -331,10 +315,10 @@ autowrap_mode = 2
 [node name="ScoreLabel3" type="Label" parent="GameManager"]
 texture_filter = 1
 texture_repeat = 3
-offset_left = 5518.0
-offset_top = -725.0
-offset_right = 5580.0
-offset_bottom = -673.0
+offset_left = 5864.0
+offset_top = -770.0
+offset_right = 5926.0
+offset_bottom = -718.0
 theme_override_colors/font_color = Color(0.00011382803, 0.00011382803, 0.00011382803, 1)
 theme_override_fonts/font = ExtResource("2_wo48x")
 theme_override_font_sizes/font_size = 8
@@ -345,8 +329,10 @@ horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="ScoreLabel" type="Label" parent="GameManager"]
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 4714.0
+offset_top = -196.0
+offset_right = 4754.0
+offset_bottom = -173.0
 
 [node name="TileMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -575,6 +561,17 @@ theme_override_fonts/font = ExtResource("2_wo48x")
 theme_override_font_sizes/font_size = 8
 text = "The final walk"
 
+[node name="Label9" type="Label" parent="Node2D"]
+texture_filter = 1
+offset_left = 3405.0
+offset_top = -438.0
+offset_right = 3478.0
+offset_bottom = -429.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_wo48x")
+theme_override_font_sizes/font_size = 8
+text = "MAIN MENU"
+
 [node name="Label3" type="Label" parent="Node2D"]
 texture_filter = 1
 offset_left = 856.0
@@ -590,25 +587,5 @@ text = "^
 ^
 "
 
-[node name="MainMenu2" type="Button" parent="."]
-texture_filter = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 3408.0
-offset_top = -256.0
-offset_right = 3481.0
-offset_bottom = -235.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("2_wo48x")
-theme_override_font_sizes/font_size = 8
-theme_override_styles/normal = SubResource("StyleBoxFlat_ne2mo")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_6cvei")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_6cvei")
-theme_override_styles/hover = SubResource("StyleBoxFlat_6cvei")
-text = "Main Menu"
-
-[connection signal="pressed" from="MainMenu2" to="GameManager" method="_on_main_menu_2_pressed"]
+[node name="Portal" parent="." instance=ExtResource("9_6cvei")]
+position = Vector2(3439, -398)

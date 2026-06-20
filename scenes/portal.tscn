@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://cvrrncske3dmc"]
+
+[ext_resource type="Texture2D" uid="uid://danusc7dsower" path="res://assets/Animated Portal/Dark Portal-Spinning.png" id="1_1ffj6"]
+[ext_resource type="Script" uid="uid://dfqkvaas61bra" path="res://scenes/portal.gd" id="1_jr6l0"]
+[ext_resource type="AudioStream" uid="uid://x6inj8xkxxmb" path="res://brackeys_platformer_assets/sounds/power_up.wav" id="2_jr6l0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4jfq"]
+atlas = ExtResource("1_1ffj6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dyed0"]
+atlas = ExtResource("1_1ffj6")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckw30"]
+atlas = ExtResource("1_1ffj6")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pvrx"]
+atlas = ExtResource("1_1ffj6")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0ytf"]
+atlas = ExtResource("1_1ffj6")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frqps"]
+atlas = ExtResource("1_1ffj6")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yude"]
+atlas = ExtResource("1_1ffj6")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5sgc"]
+atlas = ExtResource("1_1ffj6")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_11dha"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4jfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dyed0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckw30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pvrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0ytf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frqps")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yude")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5sgc")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 20.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hay7w"]
+radius = 17.0
+height = 38.0
+
+[node name="Portal" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_jr6l0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_11dha")
+animation = &"spin"
+autoplay = "spin"
+frame_progress = 0.38357306
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_hay7w")
+
+[node name="TeleportSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_jr6l0")
+pitch_scale = 3.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

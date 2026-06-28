@@ -1,8 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7wwcj6f7ccb6"]
+[gd_scene load_steps=13 format=3 uid="uid://b7wwcj6f7ccb6"]
 
 [ext_resource type="Script" uid="uid://cssgfg2bnkgls" path="res://scenes/main_menu.gd" id="1_bqqt6"]
 [ext_resource type="Texture2D" uid="uid://bjim21w8iql1m" path="res://brackeys_platformer_assets/music/Screenshot 2026-04-04 231234.png" id="1_ekxnf"]
 [ext_resource type="FontFile" uid="uid://cxfbkwfodohgk" path="res://brackeys_platformer_assets/fonts/PixelOperator8-Bold.ttf" id="1_l6cm7"]
+[ext_resource type="AudioStream" uid="uid://b0sv7xg3j0v4o" path="res://brackeys_platformer_assets/music/time_for_adventure.mp3" id="4_wu84c"]
+[ext_resource type="Script" uid="uid://dlx7toly3ud41" path="res://scenes/audio_controller.gd" id="5_8ln24"]
+[ext_resource type="Script" uid="uid://dwvrm5caltnoc" path="res://scenes/full_screen_control.gd" id="6_rtw2f"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bqqt6"]
 texture = ExtResource("1_ekxnf")
@@ -30,6 +33,14 @@ font = ExtResource("1_l6cm7")
 font_size = 60
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_wu84c"]
+color = Color(1, 1, 1, 1)
+thickness = 6
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_8ln24"]
+color = Color(0, 0.54120576, 0.18921018, 1)
+thickness = 6
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -39,7 +50,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bqqt6")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Background" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,15 +59,27 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxTexture_bqqt6")
 
-[node name="Button" type="Button" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_wu84c")
+autoplay = true
+bus = &"Music"
+
+[node name="MainButtons" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_top = -44.25
-offset_right = 272.0
-offset_bottom = 44.25
+offset_left = -122.5
+offset_top = -80.0
+offset_right = 122.5
+offset_bottom = 80.0
+grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Button" type="Button" parent="MainButtons"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("1_l6cm7")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_ekxnf")
@@ -65,19 +88,8 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_bqqt6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
 text = "LEVEL 1"
 
-[node name="Button2" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -136.0
-offset_top = -44.25
-offset_right = 136.0
-offset_bottom = 44.25
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Button2" type="Button" parent="MainButtons"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("1_l6cm7")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_ekxnf")
@@ -86,18 +98,8 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_bqqt6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
 text = "LEVEL 2"
 
-[node name="Button3" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -272.0
-offset_top = -44.25
-offset_bottom = 44.25
-grow_horizontal = 0
-grow_vertical = 2
+[node name="Button3" type="Button" parent="MainButtons"]
+layout_mode = 2
 theme_override_fonts/font = ExtResource("1_l6cm7")
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_ekxnf")
@@ -105,6 +107,16 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_bqqt6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_bqqt6")
 theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
 text = "LEVEL 3"
+
+[node name="Button4" type="Button" parent="MainButtons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_ekxnf")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
+text = "Settings"
 
 [node name="Label" type="Label" parent="."]
 texture_filter = 1
@@ -121,6 +133,74 @@ label_settings = SubResource("LabelSettings_wu84c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[node name="Options" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -239.5
+offset_top = -167.0
+offset_right = 239.5
+offset_bottom = 205.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Options"]
+layout_mode = 0
+offset_left = 0.5
+offset_right = 479.5
+offset_bottom = 54.0
+theme_override_font_sizes/font_size = 32
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button5" type="Button" parent="Options"]
+layout_mode = 0
+offset_left = 117.5
+offset_top = 280.0
+offset_right = 362.5
+offset_bottom = 317.0
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_ekxnf")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_bqqt6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bqqt6")
+text = "Back
+"
+
+[node name="AudioController" type="HSlider" parent="Options"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 117.5
+offset_top = 124.0
+offset_right = 362.5
+offset_bottom = 153.0
+theme_override_styles/slider = SubResource("StyleBoxLine_wu84c")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_8ln24")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_8ln24")
+max_value = 1.0
+step = 0.05
+value = 1.0
+script = ExtResource("5_8ln24")
+audio_bus_name = "Music"
+
+[node name="FullScreenControl" type="CheckButton" parent="Options"]
+layout_mode = 0
+offset_left = 117.5
+offset_top = 169.0
+offset_right = 362.5
+offset_bottom = 206.0
+text = "FULLSCREEN"
+script = ExtResource("6_rtw2f")
+
+[connection signal="pressed" from="MainButtons/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MainButtons/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="MainButtons/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="MainButtons/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="Options/Button5" to="." method="_on_back_option_pressed"]
+[connection signal="value_changed" from="Options/AudioController" to="Options/AudioController" method="_on_value_changed"]
+[connection signal="toggled" from="Options/FullScreenControl" to="Options/FullScreenControl" method="_on_toggled"]

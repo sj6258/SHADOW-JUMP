@@ -9,6 +9,10 @@ var score = 0
 @onready var score_label: Label = $ScoreLabel
 
 
+func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("Back"):
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
 func add_score():
 	
 	score += 1
